@@ -1,7 +1,7 @@
 require 'csv'
 require 'open-uri'
 
-class SalesEngine
+class SalesEngine 
   class << self
     def csv_hash
       @csv_hash ||= csv_urls.inject({}) do |new_hash, (file_name, url)|

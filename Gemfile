@@ -12,7 +12,6 @@ gem 'puma', '~> 3.7'
 
 gem 'rack-cors'
 
-
 group :development, :test do
   gem 'rspec-rails'
   gem 'capybara'
@@ -23,12 +22,14 @@ group :development, :test do
   gem 'factory_bot_rails'
   gem 'faker'
   gem 'orderly'
+  gem 'database_cleaner-active_record'
 end
 
 group :development do
   gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'rubocop-rails'
 end
+
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
