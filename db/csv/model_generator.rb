@@ -1,5 +1,3 @@
-require './db/csv/sales_engine.rb'
-
 class ModelGenerator
   class << self
     def create_models(csv_hash)
@@ -54,7 +52,7 @@ class ModelGenerator
 
     def unit_price_format(row)
       hash = row.to_h
-      hash["unit_price"] = cents_to_dollars(hash["unit_price"])
+      hash[:unit_price] = cents_to_dollars(hash[:unit_price])
       hash
     end
 
