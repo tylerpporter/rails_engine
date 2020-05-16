@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :merchant do
-    name { "MyString" }
-    created_at { "MyString" }
-    updated_at { "MyString" }
+    name { Faker::TvShows::GameOfThrones.character }
+    created_at { Faker::Time.backward(days: 19, period: :evening) }
+    updated_at { Faker::Time.backward(days: 19, period: :evening) }
   end
 end
