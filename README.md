@@ -1,24 +1,33 @@
-# README
+# Rails Engine
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+API for [Rails Driver](https://github.com/turingschool-examples/rails_driver)
 
-Things you may want to cover:
+## Deployment
 
-* Ruby version
+N/A Development only 
 
-* System dependencies
+## Getting Started
 
-* Configuration
+- Fork this repository
+- Clone your fork
+- Run `rails db:create`
+- Run `rails db:migrate`
+- Run `rake db:seed:from_csv`
 
-* Database creation
+### Prerequisites
 
-* Database initialization
+- Run `bundle install`
 
-* How to run the test suite
 
-* Services (job queues, cache servers, search engines, etc.)
+## Running the tests
 
-* Deployment instructions
+- Run `bundle exec rspec`
 
-* ...
+## Built With
+
+* [Rails](https://rubyonrails.org/) - Framework
+* [RSpec](https://github.com/rspec/rspec-rails) - Test suite
+
+## Author
+
+* [**Tyler Porter**](https://github.com/tylerpporter)
