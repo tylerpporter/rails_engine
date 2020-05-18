@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Items API' do
+describe 'API - Items resource' do
   it 'sends an index of all items' do
     merchant = create(:merchant)
     create_list(:item, 5, merchant_id: merchant.id)
