@@ -73,4 +73,17 @@ describe 'Items API' do
     expect(updated_item[:data][:attributes][:unit_price]).to eq(body[:unit_price].to_f)
     expect(updated_item[:data][:attributes][:merchant_id]).to eq(merchant.id)
   end
+  it 'can destroy an item' do
+    merchant = create(:merchant)
+    create_list(:item, 5, merchant_id: merchant.id)
+    item = merchant.items.last
+
+    delete "/api/v1/items/#{item.id}"
+
+    merchant.reload
+    deleted_item = JSON.parse(response.body, symbolize_names: true)
+
+    expect(deleted_item[:data][:attributes][:id]).to eq(item.id)
+    expect(merchant.items.size).to eq(4)
+  end
 end
