@@ -8,6 +8,9 @@ namespace :db do
       ModelGenerator.destroy_models
       csv_hash = SalesEngine.csv_hash
       ModelGenerator.create_models(csv_hash)
+      ActiveRecord::Base.connection.tables.each do |t|
+        ActiveRecord::Base.connection.reset_pk_sequence!(t)
+      end
     end
   end
 end
