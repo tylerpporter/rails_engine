@@ -51,4 +51,26 @@ describe 'Items API' do
 
     expect(merchant.items.size).to eq(1)
   end
+  it 'can update an item' do
+    merchant = create(:merchant)
+    create_list(:item, 5, merchant_id: merchant.id)
+    og_item = merchant.items.last
+    body = {
+      "name": "toy",
+      "description": "fun toy",
+      "unit_price": "10.50",
+      "merchant_id": "#{merchant.id}"
+    }
+    patch "/api/v1/items/#{og_item.id}", params: body
+
+    updated_item = JSON.parse(response.body, symbolize_names: true)
+
+    merchant.reload
+
+    expect(updated_item[:data][:attributes][:id]).to eq(og_item.id)
+    expect(updated_item[:data][:attributes][:name]).to eq(body[:name])
+    expect(updated_item[:data][:attributes][:description]).to eq(body[:description])
+    expect(updated_item[:data][:attributes][:unit_price]).to eq(body[:unit_price].to_f)
+    expect(updated_item[:data][:attributes][:merchant_id]).to eq(merchant.id)
+  end
 end
