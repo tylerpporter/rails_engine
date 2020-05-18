@@ -19,10 +19,36 @@ describe 'Items API' do
     item_id = merchant.items.last.id
     get "/api/v1/items/#{item_id}"
 
-
     item = JSON.parse(response.body, symbolize_names: true)
+
     expect(item[:data][:id]).to eq(item_id.to_s)
     expect(item[:data][:type]).to eq("item")
     expect(item[:data][:attributes][:unit_price].class).to eq(Float)
+  end
+  it 'can create an item' do
+    merchant = create(:merchant)
+    body = {
+      "name": "toy",
+      "description": "fun toy",
+      "unit_price": "10.50",
+      "merchant_id": "#{merchant.id}"
+    }
+
+    expect(merchant.items.size).to eq(0)
+
+    post '/api/v1/items', params: body
+
+    item = JSON.parse(response.body, symbolize_names: true)
+
+    expect(item[:data][:type]).to eq("item")
+    expect(item[:data][:attributes][:id]).to be_present
+    expect(item[:data][:attributes][:name]).to eq(body[:name])
+    expect(item[:data][:attributes][:description]).to eq(body[:description])
+    expect(item[:data][:attributes][:unit_price]).to eq(body[:unit_price].to_f)
+    expect(item[:data][:attributes][:merchant_id]).to eq(merchant.id)
+
+    merchant.reload
+
+    expect(merchant.items.size).to eq(1)
   end
 end
