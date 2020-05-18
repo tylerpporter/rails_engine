@@ -50,5 +50,18 @@ describe 'API - Merchants resource' do
 
     expect(resp[:data][:attributes][:name]).to eq(merchant.name)
   end
+  it 'can destroy a merchant' do
+    create_list(:merchant, 5)
+    merchant = Merchant.last
+
+    expect(Merchant.all.size).to eq(5)
+
+    delete "/api/v1/merchants/#{merchant.id}"
+
+    resp = JSON.parse(response.body, symbolize_names: true)
+
+    expect(resp[:data][:attributes][:id]).to eq(merchant.id)
+    expect(Merchant.all.size).to eq(4)
+  end
 
 end
