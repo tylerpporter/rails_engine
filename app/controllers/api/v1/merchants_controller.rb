@@ -5,5 +5,16 @@ class Api::V1::MerchantsController < ApplicationController
 
   def show
     render json: MerchantSerializer.new(Merchant.find(params[:id]))
-  end 
+  end
+
+  def create
+    render json: MerchantSerializer.new(Merchant.create(merchant_params))
+  end
+
+  private
+
+  def merchant_params
+    params.permit(:name)
+  end
+  
 end

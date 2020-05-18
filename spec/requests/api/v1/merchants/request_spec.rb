@@ -21,5 +21,17 @@ describe 'API - Merchants resource' do
     expect(resp[:data][:type]).to eq("merchant")
     expect(resp[:data][:attributes][:name]).to eq(merchant.name)
   end
+  it 'can create a merchant' do
+    body = {
+      "name": "Bobby's Shop Of Hops"
+    }
+
+    post '/api/v1/merchants', params: body
+
+    resp = JSON.parse(response.body, symbolize_names: true)
+
+    expect(resp[:data][:attributes][:id]).to be_present
+    expect(resp[:data][:attributes][:name]).to eq(body[:name])
+  end
 
 end
