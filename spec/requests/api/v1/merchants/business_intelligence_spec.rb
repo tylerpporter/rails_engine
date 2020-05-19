@@ -51,4 +51,15 @@ describe 'API - Merchants resource' do
     expect(merchant1[:attributes][:name]).to eq(@merchant2.name)
     expect(merchant2[:attributes][:name]).to eq(@merchant3.name)
   end
+  it 'can return a variable number of merchants ranked by total number of items sold' do
+    get '/api/v1/merchants/most_items?quantity=2'
+
+    resp = JSON.parse(response.body, symbolize_names: true)
+
+    merchant1 = resp[:data].first
+    merchant2 = resp[:data].last
+
+    expect(merchant1[:attributes][:name]).to eq(@merchant2.name)
+    expect(merchant2[:attributes][:name]).to eq(@merchant3.name)
+  end
 end
