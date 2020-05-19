@@ -4,6 +4,11 @@ class Api::V1::Items::SearchController < ApplicationController
     render json: ItemSerializer.new(items.first)
   end
 
+  def index
+    items = Item.filter(search_params)
+    render json: ItemSerializer.new(items)
+  end
+
   private
 
   def search_params
