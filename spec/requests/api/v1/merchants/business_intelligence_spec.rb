@@ -62,4 +62,11 @@ describe 'API - Merchants resource' do
     expect(merchant1[:attributes][:name]).to eq(@merchant2.name)
     expect(merchant2[:attributes][:name]).to eq(@merchant3.name)
   end
+  it 'can return the total revenue for a single merchant' do
+    get "/api/v1/merchants/#{@merchant2.id}/revenue"
+
+    resp = JSON.parse(response.body, symbolize_names: true)
+
+    expect(resp[:data][:attributes][:revenue]).to eq(43.35)
+  end
 end

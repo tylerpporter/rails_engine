@@ -1,5 +1,8 @@
 class MerchantSerializer
   include FastJsonapi::ObjectSerializer
-  has_many :items
   attributes :id, :name
+
+  attribute :revenue do |merchant|
+    merchant.total_revenue.to_f
+  end
 end

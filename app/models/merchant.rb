@@ -30,4 +30,11 @@ class Merchant < ApplicationRecord
     end
   end
 
+  def total_revenue
+    # doesn't take into account transaction status
+    item_ids = items.map(&:id)
+    invoice_items = InvoiceItem.where(item_id: item_ids)
+    invoice_items.sum(&:total_price)
+  end
+
 end
