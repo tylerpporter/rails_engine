@@ -42,6 +42,7 @@ GEM
       public_suffix (>= 2.0.2, < 5.0)
     arel (8.0.0)
     ast (2.4.0)
+    awesome_print (1.8.0)
     builder (3.2.4)
     capybara (3.32.1)
       addressable
@@ -202,6 +203,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  awesome_print
   capybara
   database_cleaner-active_record
   factory_bot_rails

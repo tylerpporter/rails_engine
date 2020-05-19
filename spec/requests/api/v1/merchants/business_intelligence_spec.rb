@@ -25,6 +25,12 @@ describe 'API - Merchants resource' do
     @invoice4 = @merchant2.invoices.last
     @invoice5 = @merchant3.invoices.first
     @invoice6 = @merchant3.invoices.last
+    @transaction1 = create(:transaction, invoice_id: @invoice1.id, result: 'failure')
+    @transaction2 = create(:transaction, invoice_id: @invoice2.id)
+    @transaction3 = create(:transaction, invoice_id: @invoice3.id)
+    @transaction4 = create(:transaction, invoice_id: @invoice4.id)
+    @transaction5 = create(:transaction, invoice_id: @invoice5.id)
+    @transaction6 = create(:transaction, invoice_id: @invoice6.id)
     @invoice_item1 = create(:invoice_item, item_id: @item1.id, invoice_id: @invoice1.id, unit_price: @item1.unit_price, quantity: 5)
     @invoice_item2 = create(:invoice_item, item_id: @item2.id, invoice_id: @invoice2.id, unit_price: @item2.unit_price, quantity: 4)
     @invoice_item3 = create(:invoice_item, item_id: @item3.id, invoice_id: @invoice3.id, unit_price: @item3.unit_price, quantity: 9)
