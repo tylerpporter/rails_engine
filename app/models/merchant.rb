@@ -4,7 +4,7 @@ class Merchant < ApplicationRecord
   has_many :items, dependent: :destroy
   has_many :invoices, dependent: :destroy
   has_many :invoice_items, through: :invoices
-  has_many :transactions, through: :invoice_items
+  has_many :transactions, through: :invoices
 
   scope :by_name, ->(name) { where('lower(name) LIKE ?', "%#{name.downcase}%")}
   scope :by_created_at, ->(created_at) { where created_at: created_at }
@@ -37,5 +37,4 @@ class Merchant < ApplicationRecord
       .group(:id)
     end
   end
-
 end
