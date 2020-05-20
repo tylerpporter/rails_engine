@@ -20,6 +20,8 @@ Rails.application.routes.draw do
 
       get '/merchants/:id/items', to: 'relationships#index'
       get '/items/:id/merchant', to: 'relationships#show'
+
+      get '/revenue', to: 'revenue#show'
     end
   end
 end
