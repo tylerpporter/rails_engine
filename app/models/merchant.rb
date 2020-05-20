@@ -16,7 +16,7 @@ class Merchant < ApplicationRecord
       .joins(:invoice_items, :transactions)
       .merge(Transaction.successful)
       .group(:id)
-      .order("total_revenue DESC")
+      .order('total_revenue DESC')
       .limit(limit)
     end
 
