@@ -68,5 +68,11 @@ describe 'API - Merchants resource' do
     resp = JSON.parse(response.body, symbolize_names: true)
 
     expect(resp[:data][:attributes][:revenue]).to eq(43.35)
+
+    get "/api/v1/merchants/#{@merchant1.id}/revenue"
+
+    resp = JSON.parse(response.body, symbolize_names: true)
+
+    expect(resp[:data][:attributes][:revenue]).to eq(10.2)
   end
 end
