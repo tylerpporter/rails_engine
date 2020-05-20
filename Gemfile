@@ -12,6 +12,8 @@ gem 'puma', '~> 3.7'
 
 gem 'rack-cors'
 gem 'fast_jsonapi'
+gem 'jbuilder'
+
 
 group :development, :test do
   gem 'rspec-rails'

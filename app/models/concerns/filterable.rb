@@ -1,6 +1,6 @@
 module Filterable
   extend ActiveSupport::Concern
-
+  
   module ClassMethods
     def filter(search_params)
       results = self.where(nil)
@@ -9,6 +9,5 @@ module Filterable
       end
       results
     end
-
   end
 end
